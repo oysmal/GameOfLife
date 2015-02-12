@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "eventinterface.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public EventInterface
 {
     Q_OBJECT
 
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void sendEventTest();
 };
 
 #endif // MAINWINDOW_H
