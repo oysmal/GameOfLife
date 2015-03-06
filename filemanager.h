@@ -15,7 +15,7 @@ public:
     void open_file(std::string filePath);
     void read_file(bool** array);
     void close_file();
-    Format resolveFileFormat();
+    Loader::Format resolveFileFormat();
 
 private:
     Loader loader;

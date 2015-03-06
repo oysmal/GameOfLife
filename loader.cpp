@@ -34,25 +34,26 @@ int checkIfLife105or106(std::fstream &file) {
 
 }
 
-int resolveFileFormat(std::fstream &file) {
+int resolveFileFormat(std::ifstream &file) {
     if(!file.is_open())
         return -1;
 
     std::string filename;
     try {
-        filename = file.getline();
+        std::getline(file, filename);
     } catch( std::exception e) {
         qDebug() << e.what();
     } catch(...) {
         qDebug() << "An error occured during file read\n";
     }
 
-    switch(filename) {
-        case "#Life 1.05":
+    if(filename == "#Life 1.05"){
             return Loader::Format::LIFE_105;
-        case "#Life 1.06":
+    }
+    else if(filename == "#Life 1.06") {
             return Loader::Format::LIFE_106;
-        default:
+    }
+    else {
             return Loader::Format::UNSUPPORTED_FORMAT;
     }
 
