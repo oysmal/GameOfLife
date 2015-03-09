@@ -7,6 +7,8 @@ class gameoflife
 public:
     gameoflife();
     ~gameoflife();
+
+    load_file();
     iterator();
     apply_rules(int x, int y);
     test_neighbour(int x, int y);

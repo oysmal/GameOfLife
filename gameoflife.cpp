@@ -1,6 +1,8 @@
 #include "gameoflife.h"
 #include "rules.h"
 #include "grid.h"
+#include "eventinterface.h"
+#include "subscriber.h"
 
 gameoflife::gameoflife() {
 
@@ -14,7 +16,7 @@ gameoflife::iterator() {
     tick++;
 }
 
-gameoflife::test_neighbour(int x, int y) {
+gameoflife::load_file() {
 
 }
 

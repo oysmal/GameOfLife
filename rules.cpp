@@ -1,38 +1,30 @@
 #include "rules.h"
 #include "grid.h"
+using namespace std;
 
 rules::rules() {
-    alive_values[] = new int[2];
-    alive_values[0] = 2;
-    alive_values[1] = 3;
-    breed_values[] = new int[1];
-    breed_values[0] = 3;
+    alive_values(2);
+    alive_values.insert(2, first);
+    alive_values.insert(3, last);
+    breed_values(1);
+    breed_values.insert(3, first);
 }
 
 rules::~rules() {
 
 }
 
-rules::set_alive(){
-
+vector<int> rules::get_alive(){
+    return alive_values;
 }
 
-rules::set_breed(){
-
+vector<int> rules::get_breed(){
+    return breed_values;
 }
 
-rules::get_alive(){
-
-}
-
-rules::get_breed(){
-
-}
-
-// x og y, vet jeg ikke hvor kommer fra, kanskje game of life skal gjøre dette.
 rules::breed (int x, int y, int neighbour) {
-    for (int i = 0; i < i; i++) { //put inn størrelsen på arrayen til breed_value
-        if (breed_value[i] == neighbour){
+    for (int i = 0; i < breed_values.size(); i++) { //put inn størrelsen på arrayen til breed_value
+        if (breed_values[i] == neighbour){
             grid::set_value_at(x, y, true);
         }
     }
@@ -40,8 +32,8 @@ rules::breed (int x, int y, int neighbour) {
 
 //denne må endres til å drepe
 rules::kill (int x, int y, int neighbour) {
-    for (int i = 0; i < i; i++) { //put inn størrelsen på arrayen til alive_value
-        if (alive_value[i] == neighbour){
+    for (int i = 0; i < alive_values.size(); i++) { //put inn størrelsen på arrayen til alive_value
+        if (alive_values[i] == neighbour){
             grid::set_value_at(x, y, true);
         }
     }

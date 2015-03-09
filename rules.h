@@ -1,6 +1,6 @@
 #ifndef RULES_H
 #define RULES_H
-
+#include <vector>
 
 class rules
 {
@@ -12,14 +12,12 @@ public:
     void kill(int x, int y, int neighbours);
     int test_neighbour(int x, int y);
 
-    void set_alive(int alive_values[]);
-    void set_breed(int breed_values[]);
-    int get_alive();
-    int get_breed();
+    std::vector<int> get_alive();
+    std::vector<int> get_breed();
 
 private:
-    int alive_values[]; //finne riktig klasse
-    int breed_values[]; //finne riktig klasse
+    std::vector<int> alive_values;
+    std::vector<int> breed_values;
 };
 
 #endif // RULES_H
