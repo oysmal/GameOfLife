@@ -1,4 +1,5 @@
 #include "grid.h"
+#include <QDebug>
 
 Grid::Grid()
 {
@@ -14,6 +15,7 @@ Grid::~Grid()
 }
 
 bool Grid::get_value_at(int x, int y) {
+    qDebug() << "Getting value at: " << x << ", " << y << "Size of array is: " << size_x << ", " << size_y << ".\n";
     if(x < size_x && y < size_y)
         return grid_array[x][y];
     else
