@@ -2,6 +2,9 @@
 #define LOADER_H
 
 #include <fstream>
+#include <istream>
+#include <iostream>
+#include <QDebug>
 
 class Loader
 {
