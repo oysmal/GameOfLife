@@ -84,10 +84,10 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>-10</y>
-      <width>821</width>
-      <height>371</height>
+      <x>60</x>
+      <y>20</y>
+      <width>701</width>
+      <height>291</height>
      </rect>
     </property>
    </widget>
@@ -107,6 +107,8 @@
     </property>
     <addaction name="actionClose"/>
     <addaction name="actionOpen_File"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuClose"/>
   </widget>
@@ -129,6 +131,11 @@
     <string>Open File</string>
    </property>
   </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
@@ -146,6 +153,22 @@
     <hint type="destinationlabel">
      <x>721</x>
      <y>441</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>manualIterateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>autoIterateButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>425</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>344</x>
+     <y>409</y>
     </hint>
    </hints>
   </connection>
