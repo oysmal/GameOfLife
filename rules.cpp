@@ -4,10 +4,10 @@ using namespace std;
 
 rules::rules() {
     alive_values(2);
-    alive_values.insert(2, first);
-    alive_values.insert(3, last);
+    alive_values.push_back(2);
+    alive_values.push_back(3);
     breed_values(1);
-    breed_values.insert(3, first);
+    breed_values.push_back(3);
 }
 
 rules::~rules() {
