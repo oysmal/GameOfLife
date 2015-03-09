@@ -25,14 +25,14 @@ void Loader::loadLife105Format(bool** array, std::fstream &file) {
     if (file.is_open()) {
         while (getline(file, line)) {
 
-            if(line.substr(0,2) = "#D") {
+            if(line.substr(0,2) == "#D") {
                 continue;
-            } else if (line.substr(0,2) = "#R") {
+            } else if (line.substr(0,2) == "#R") {
                 std::string start;
                 int rule1, rule2;
                 char divider;
 
-                istringstream iss(line);
+                std::istringstream iss(line);
                 iss >> start;
                 iss >> rule1;
                 iss >> divider;
@@ -50,20 +50,7 @@ void Loader::loadLife105Format(bool** array, std::fstream &file) {
 
             std::string start;
             int x, y;
-            istringstream iss(line);
-
-
-            switch(line) {
-                case "#Life 1.05":
-                    return Loader::Format::LIFE_105;
-                case "#Life 1.06":
-                    return Loader::Format::LIFE_106;
-                default:
-                    return Loader::Format::UNSUPPORTED_FORMAT;
-            }
-
-
-
+            std::istringstream iss(line);
         }
         file.close();
     }
@@ -82,7 +69,7 @@ void Loader::loadLife106Format(bool** array, std::fstream &file) {
             // find center of array
 
             int x, y;
-            istringstream iss(line);
+            std::istringstream iss(line);
             iss >> x;
             iss >> y;
             array[x][y] = true;
@@ -99,9 +86,9 @@ int checkIfLife105or106(std::fstream &file) {
 
 }
 
-int resolveFileFormat(std::ifstream &file) {
+Loader::Format resolveFileFormat(std::ifstream &file) {
     if(!file.is_open())
-        return -1;
+        return Loader::Format::FILE_NOT_OPEN;
 
     std::string filename;
     try {
