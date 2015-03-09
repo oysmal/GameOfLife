@@ -7,7 +7,7 @@ EventHandler::EventHandler()
         Event::EVENT event = static_cast<Event::EVENT>(e);
         subscribers.insert(std::pair<Event::EVENT, std::vector<Subscriber*>>(event, std::vector<Subscriber*>()));
     }
-    this->event_queue = std::vector<Event::EVENT>();
+    this->event_queue = std::vector<Event*>();
 
 }
 
@@ -30,13 +30,13 @@ void EventHandler::cancel_subscription(Event::EVENT e, Subscriber *s) {
         subscribers.at(e).erase(it);
 }
 
-void EventHandler::add_event_to_queue(Event::EVENT e) {
+void EventHandler::add_event_to_queue(Event* e) {
     event_queue.push_back(e);
 }
 
 void EventHandler::notify_subscribers() {
-    for(Event::EVENT e : event_queue) {
-        for(Subscriber *s : subscribers.at(e)) {
+    for(Event *e : event_queue) {
+        for(Subscriber *s : subscribers.at(e->get_event_type())) {
             s->notify(e);
         }
     }

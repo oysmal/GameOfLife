@@ -8,6 +8,7 @@
 #include <QGraphicsView>
 #include <QGraphicsRectItem>
 #include <QList>
+#include <QPoint>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,7 @@ public:
     ~MainWindow();
     void loadGridIntoView();
     void render();
+    QPoint scalePosition(int i, int j);
 
 private:
     Ui::MainWindow *ui;

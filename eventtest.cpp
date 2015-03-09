@@ -15,7 +15,7 @@ EventTest::~EventTest()
 
 }
 
-void EventTest::notify(Event::EVENT e) {
+void EventTest::notify(Event *e) {
     qDebug() << "Event recieved\n";
     event_count++;
 }

@@ -3,6 +3,7 @@
 #include "eventhandler.h"
 #include "eventtest.h"
 #include <QDebug>
+#include <QShortcut>
 
 #include <QGraphicsRectItem>
 MainWindow::MainWindow(QWidget *parent) :
@@ -11,17 +12,26 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     grid = new Grid();
-    grid->set_value_at(50,50, true);
-    grid->set_value_at(0,50, true);
+    grid->set_value_at(99,99, true);
+    grid->set_value_at(0,99, true);
     grid->set_value_at(0,0, true);
+    grid->set_value_at(1,1, true);
+    grid->set_value_at(2,2, true);
+    grid->set_value_at(3,3, true);
+    grid->set_value_at(4,4, true);
+    grid->set_value_at(5,5, true);
+    grid->set_value_at(6,6, true);
+    grid->set_value_at(7,7, true);
+    grid->set_value_at(8,8, true);
+    grid->set_value_at(9,9, true);
+    grid->set_value_at(10,10, true);
     connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
+    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this, SLOT(close()));
     QList<QRect> points;
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
     loadGridIntoView();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -31,16 +41,14 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::sendEventTest() {
-    add_event_to_queue(Event::EVENT::AUTO_STEP);
+    add_event_to_queue(new Event(Event::EVENT::AUTO_STEP));
     EventHandler::getInstance().notify_subscribers();
     qDebug() << EventTest::event_count << "\n";
 }
 
 void MainWindow::loadGridIntoView() {
-    QPen pen (Qt::darkGreen);
-    QBrush brush;
-    brush.setColor( Qt::darkGreen );
-    brush.setStyle( Qt::SolidPattern);
+    QBrush *brush = new QBrush();
+    brush->setColor( Qt::green );
 
     qDebug() << "Loading grid into view...\n";
     int width = grid->get_size_x(), height = grid->get_size_y();
@@ -48,11 +56,26 @@ void MainWindow::loadGridIntoView() {
         for(int j = 0; j < height; j++) {
             if(grid->get_value_at(i, j) == true) {
                 qDebug() << "Value at == true";
-                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(width, height, 10, 10));
+                QPoint pos = scalePosition(i,j);
+                scene->foregroundBrush().setColor(Qt::green);
+                scene->foregroundBrush().setStyle(Qt::SolidPattern);
+                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5));
+                p->setBrush(*brush);
                 points.append(p);
                 scene->addItem(p);
             }
         }
     }
-    ui->graphicsView->repaint();
+}
+
+
+QPoint MainWindow::scalePosition(int i, int j) {
+    QSize size = ui->graphicsView->size();
+    int width = grid->get_size_x();
+    int height = grid->get_size_y();
+
+    int widthfactor = size.width()/(float)width;
+    int heightfactor = size.height()/(float)height;
+
+    return QPoint(i*widthfactor, j*heightfactor);
 }

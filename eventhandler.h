@@ -12,7 +12,7 @@ public:
 
     void subscribe(Event::EVENT e, Subscriber *s);
     void cancel_subscription(Event::EVENT e, Subscriber *s);
-    void add_event_to_queue(Event::EVENT e);
+    void add_event_to_queue(Event *e);
     void notify_subscribers();
 
     ~EventHandler();
@@ -25,7 +25,7 @@ public:
 
 private:
     std::map<Event::EVENT, std::vector<Subscriber*>> subscribers;
-    std::vector<Event::EVENT> event_queue;
+    std::vector<Event*> event_queue;
     EventHandler();
 
     EventHandler(EventHandler const&) = delete;

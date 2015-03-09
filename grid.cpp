@@ -7,6 +7,12 @@ Grid::Grid()
     for( int i = 0; i < size_x; i++) {
         grid_array[i] = new bool[size_y];
     }
+
+    for(int i = 0; i < size_x; i ++) {
+        for(int j = 0; j < size_y; j ++) {
+            grid_array[i][j] = false;
+        }
+    }
 }
 
 Grid::~Grid()
@@ -15,7 +21,6 @@ Grid::~Grid()
 }
 
 bool Grid::get_value_at(int x, int y) {
-    qDebug() << "Getting value at: " << x << ", " << y << "Size of array is: " << size_x << ", " << size_y << ".\n";
     if(x < size_x && y < size_y)
         return grid_array[x][y];
     else

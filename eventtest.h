@@ -9,7 +9,7 @@ class EventTest : public Subscriber
 public:
     EventTest();
     ~EventTest();
-    void notify(Event::EVENT e);
+    void notify(Event *e);
     static int event_count;
 };
 

@@ -10,7 +10,7 @@ public:
     virtual ~Subscriber();
 
     bool operator== (Subscriber &s) { return this == &s;};
-    virtual void notify(Event::EVENT e) = 0;
+    virtual void notify(Event *e) = 0;
     void subscribe(Event::EVENT e);
 };
 

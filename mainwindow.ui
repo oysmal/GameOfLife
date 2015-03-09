@@ -14,82 +14,64 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="setInitialStateLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>370</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set initial State:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="setStateComboBox">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>370</y>
-      <width>104</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Glider</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="runButton">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>370</y>
-      <width>115</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="autoIterateButton">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>370</y>
-      <width>115</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Auto Iterate</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="manualIterateButton">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>370</y>
-      <width>121</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Manual Iterate</string>
-    </property>
-   </widget>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
-      <width>701</width>
-      <height>291</height>
+      <x>150</x>
+      <y>10</y>
+      <width>651</width>
+      <height>431</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>130</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="setInitialStateLabel">
+       <property name="text">
+        <string>Set initial State:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="setStateComboBox">
+       <item>
+        <property name="text">
+         <string>Glider</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="autoIterateButton">
+       <property name="text">
+        <string>Auto Iterate</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="manualIterateButton">
+       <property name="text">
+        <string>Manual Iterate</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="runButton">
+       <property name="text">
+        <string>Run</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

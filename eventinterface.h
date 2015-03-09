@@ -10,7 +10,7 @@ public:
     EventInterface();
     ~EventInterface();
 
-    void add_event_to_queue(Event::EVENT e);
+    void add_event_to_queue(Event *e);
 
 };
 
