@@ -22,7 +22,7 @@ bool Grid::get_value_at(int x, int y) {
         return false;
 }
 
-bool Grid::set_value_at(int x, int y, bool value) {
+void Grid::set_value_at(int x, int y, bool value) {
     if(x < size_x && y < size_y)
         grid_array[x][y] = value;
 }

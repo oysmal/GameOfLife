@@ -10,7 +10,7 @@ public:
     ~Grid();
 
     bool get_value_at(int x, int y);
-    bool set_value_at(int x, int y, bool value);
+    void set_value_at(int x, int y, bool value);
     size_t get_size_x();
     size_t get_size_y();
     void expand_grid_array(int expand_points_x, int expand_points_y);

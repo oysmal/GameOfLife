@@ -83,7 +83,7 @@ void Loader::loadRLEFormat(bool** array, std::fstream &file) {
 }
 
 int checkIfLife105or106(std::fstream &file) {
-
+    return 0;
 }
 
 Loader::Format resolveFileFormat(std::ifstream &file) {
