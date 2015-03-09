@@ -1,24 +1,26 @@
 #ifndef GAMEOFLIFE_H
 #define GAMEOFLIFE_H
 
+#include "grid.h"
+#include "rules.h"
+#include "filemanager.h"
 
-class gameoflife
+class Gameoflife
 {
 public:
-    gameoflife();
-    ~gameoflife();
+    Gameoflife();
+    ~Gameoflife();
 
-    load_file();
-    iterator();
-    apply_rules(int x, int y);
-    test_neighbour(int x, int y);
-    new_rules(int breed[], int alive[]);
+    void load_file();
+    void iterator();
+    void apply_rules(int x, int y);
+    void test_neighbour(int x, int y);
+    void new_rules(std::vector<int> breed, std::vector<int> alive);
 
 private:
     int tick;
-    rules rules;
-    grid grid;
-    filemanager filemanager;
+    Rules rules;
+    FileManager filemanager;
 };
 
 #endif // GAMEOFLIFE_H

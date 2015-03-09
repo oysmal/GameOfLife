@@ -26,8 +26,8 @@ public:
 private:
     std::map<Event::EVENT, std::vector<Subscriber*>> subscribers;
     std::vector<Event*> event_queue;
-    EventHandler();
 
+    EventHandler();
     EventHandler(EventHandler const&) = delete;
     void operator=(EventHandler const&) = delete;
 };

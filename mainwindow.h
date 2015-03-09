@@ -27,7 +27,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    Grid *grid;
     QGraphicsScene *scene;
     QList<QGraphicsRectItem*> points;
     QGraphicsView graphicsView;
