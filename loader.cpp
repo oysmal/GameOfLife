@@ -21,9 +21,74 @@ void Loader::loadPlainTextFormat(bool** array, std::fstream &file) {
 
 void Loader::loadLife105Format(bool** array, std::fstream &file) {
 
+    std::string line;
+    if (file.is_open()) {
+        while (getline(file, line)) {
+
+            if(line.substr(0,2) = "#D") {
+                continue;
+            } else if (line.substr(0,2) = "#R") {
+                std::string start;
+                int rule1, rule2;
+                char divider;
+
+                istringstream iss(line);
+                iss >> start;
+                iss >> rule1;
+                iss >> divider;
+                iss >> rule2;
+
+            }
+
+            // if line starts with #Life - jump to next
+            // if line starts with #D - jump to next
+            // if line starts with #R - read rule and send to GoL
+            // if line starts with #N - jump to next
+            // if line starts with #P - read coordinates, then go to next line
+            // and read line by line and fill grid until another line starts with #P,
+            // repeat until end of file
+
+            std::string start;
+            int x, y;
+            istringstream iss(line);
+
+
+            switch(line) {
+                case "#Life 1.05":
+                    return Loader::Format::LIFE_105;
+                case "#Life 1.06":
+                    return Loader::Format::LIFE_106;
+                default:
+                    return Loader::Format::UNSUPPORTED_FORMAT;
+            }
+
+
+
+        }
+        file.close();
+    }
+
+
 }
 
 void Loader::loadLife106Format(bool** array, std::fstream &file) {
+
+    std::string line;
+    if(file.is_open()) {
+        while (getline(file, line)) {
+            // if line starts with #Life - jump to next
+            // else read coordinates, fill grid with living cells until end of file
+
+            // find center of array
+
+            int x, y;
+            istringstream iss(line);
+            iss >> x;
+            iss >> y;
+            array[x][y] = true;
+        }
+    }
+
 
 }
 void Loader::loadRLEFormat(bool** array, std::fstream &file) {
