@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     eventtest.cpp \
     grid.cpp \
     filemanager.cpp \
-    loader.cpp
+    loader.cpp \
+    gameoflife.cpp \
+    rules.cpp
 
 HEADERS  += mainwindow.h \
     eventhandler.h \
@@ -33,6 +35,8 @@ HEADERS  += mainwindow.h \
     eventtest.h \
     grid.h \
     filemanager.h \
-    loader.h
+    loader.h \
+    gameoflife.h \
+    rules.h
 
 FORMS    += mainwindow.ui
