@@ -37,12 +37,15 @@ void Rules::breed (int x, int y, int neighbour) {
     }
 }
 
-//denne må endres til å drepe
 void Rules::kill (int x, int y, int neighbour) {
+    int temp = 0;
     for (int i = 0; i < alive_values.size(); i++) {
-        if (alive_values[i] == neighbour){
-            Grid::getInstance().set_value_at(x, y, true);
+        if (alive_values[i] != neighbour){
+            temp++;
         }
+    }
+    if(temp == alive_values.size()){
+        Grid.set_value_at(x, y, false);
     }
 }
 
