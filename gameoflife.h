@@ -13,7 +13,8 @@ public:
 
     void load_file();
     void iterator();
-    void apply_rules(int x, int y);
+    void iterator_step(int n);
+    void apply_rules();
     void test_neighbour(int x, int y);
     void new_rules(std::vector<int> breed, std::vector<int> alive);
 

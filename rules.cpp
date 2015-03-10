@@ -30,7 +30,7 @@ void Rules::set_breed(vector<int> values) {
 
 
 void Rules::breed (int x, int y, int neighbour) {
-    for (int i = 0; i < breed_values.size(); i++) { //put inn størrelsen på arrayen til breed_value
+    for (int i = 0; i < breed_values.size(); i++) {
         if (breed_values[i] == neighbour){
             Grid::getInstance().set_value_at(x, y, true);
         }
@@ -39,7 +39,7 @@ void Rules::breed (int x, int y, int neighbour) {
 
 //denne må endres til å drepe
 void Rules::kill (int x, int y, int neighbour) {
-    for (int i = 0; i < alive_values.size(); i++) { //put inn størrelsen på arrayen til alive_value
+    for (int i = 0; i < alive_values.size(); i++) {
         if (alive_values[i] == neighbour){
             Grid::getInstance().set_value_at(x, y, true);
         }
