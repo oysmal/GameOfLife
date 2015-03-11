@@ -24,9 +24,8 @@ void Gameoflife::iterator_step(int n) {
     }
 }
 
-//Må implementeres
-void Gameoflife::load_file() {
-
+void Gameoflife::open_file(std::string filePath) {
+    FileManager.open_file(filePath);
 }
 
 // denne må opptimaliseres, slik at den ikke går igjennom hele for hver gang.

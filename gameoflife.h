@@ -11,7 +11,7 @@ public:
     Gameoflife();
     ~Gameoflife();
 
-    void load_file();
+    void open_file(std::string filePath);
     void iterator();
     void iterator_step(int n);
     void apply_rules();

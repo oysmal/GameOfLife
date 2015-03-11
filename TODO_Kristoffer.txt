@@ -8,6 +8,48 @@ gameoflife.h
 1. Legge til metoder som mangler
 
 gameoflife.cpp
-1. Implementer load file
-2. Legge til manglene metoder
-3. Hvis tid, optimaliser apply_rules slik at den ikke går igjennom hele gridden for hver iterasjon.
+1. Legge til manglene metoder
+2. Hvis tid, optimaliser apply_rules slik at den ikke går igjennom hele gridden for hver iterasjon.
+
+
+
+apply_rules
+
+- Bare sjekke endringer (krever noe som holder følge med endringer på brettet, men vil øke effektivitet betraktelig)
+    * Hvis en celle endrer seg, registrer cellens område (grid på 6)
+    * Sjekke disse griddene ved ny tick
+    * Påfør endringer der det kreves
+    * Legge til endringene i den originale gridden.
+- Sjekke naboer rundt et område og bestemme ut i fra det om området må sjekkes (kan bruke en metode allerede laget)
+    * Ikke lett å implementere på en fin måte, ut i fra hvordan vi har laget brettet, har ingen celler vi kan sjekke
+    *
+- Bruke threads til å dobble effektiviteten (bruker egentlig like mange ressurser men går raskere)
+
+Fakta vi vet, 6-grid på 0 er 0.
+
+return array of coordinates track_keeper () {
+    if(change) {
+        store coordinates in array;
+    }
+}
+
+check_if_changes (array of coordinates) {
+    for (array) {
+        split coordinates in two
+        breed(x, y)
+        breed(x+1,y)
+        breed(x+1,y+1)
+        breed(x+1,y-1)
+        breed(x-1,y)
+        breed(x-1,y-1)
+        breed(x-1,y+1)
+        kill(x, y)
+    }
+}
+        0000
+        0110
+        0110
+        0000
+
+Denne vil jo sjekkes, men trenger ikke å sjekkes for hver gang, for denne kommer ikke til å endre seg. Derfor for hver tick tracke endringer
+og kun endringer, ubetydelig om cellene lever eller ikke.
