@@ -45,7 +45,7 @@ void Rules::kill (int x, int y, int neighbour) {
         }
     }
     if(temp == alive_values.size()){
-        Grid.set_value_at(x, y, false);
+        Grid::getInstance().set_value_at(x, y, false);
     }
 }
 
