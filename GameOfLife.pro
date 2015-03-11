@@ -42,3 +42,6 @@ HEADERS  += mainwindow.h \
     rules.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    TODO_Kristoffer.txt

@@ -1,0 +1,13 @@
+rules.h
+I teorien ferdig.
+
+rules.cpp:
+I teorien ferdig.
+
+gameoflife.h
+1. Legge til metoder som mangler
+
+gameoflife.cpp
+1. Implementer load file
+2. Legge til manglene metoder
+3. Hvis tid, optimaliser apply_rules slik at den ikke går igjennom hele gridden for hver iterasjon.
