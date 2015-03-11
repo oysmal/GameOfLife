@@ -25,10 +25,14 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(9,9, true);
     Grid::getInstance().set_value_at(10,10, true);
     connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
-    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_Escape), this, SLOT(close()));
-    QList<QRect> points;
-    scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
+    std::shared_ptr<QAction> closeAction = std::shared_ptr<QAction>(new QAction(this));
+    std::shared_ptr<QShortcut> escapeShortcut = std::shared_ptr<QShortcut>(new QShortcut(this));
+    escapeShortcut->setKey(QKeySequence(Qt::Key_Escape));
+    closeAction->setShortcut(QKeySequence(Qt::Key_Escape));
+    connect(closeAction.get(), SIGNAL(activated()), this, SLOT(close()));
+
+    scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
+    ui->graphicsView->setScene(scene.get());
 
     loadGridIntoView();
 }
@@ -39,13 +43,13 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::sendEventTest() {
-    add_event_to_queue(new Event(Event::EVENT::AUTO_STEP));
+    add_event_to_queue(std::shared_ptr<Event>(new Event(Event::EVENT::AUTO_STEP)));
     EventHandler::getInstance().notify_subscribers();
     qDebug() << EventTest::event_count << "\n";
 }
 
 void MainWindow::loadGridIntoView() {
-    QBrush *brush = new QBrush();
+    std::shared_ptr<QBrush> brush = std::shared_ptr<QBrush>(new QBrush());
     brush->setColor( Qt::green );
 
     qDebug() << "Loading grid into view...\n";
@@ -57,10 +61,10 @@ void MainWindow::loadGridIntoView() {
                 QPoint pos = scalePosition(i,j);
                 scene->foregroundBrush().setColor(Qt::green);
                 scene->foregroundBrush().setStyle(Qt::SolidPattern);
-                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5));
-                p->setBrush(*brush);
+                std::shared_ptr<QGraphicsRectItem> p = std::shared_ptr<QGraphicsRectItem>(new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5)));
+                p->setBrush(*brush.get());
                 points.append(p);
-                scene->addItem(p);
+                scene->addItem(p.get());
             }
         }
     }

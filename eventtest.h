@@ -9,7 +9,7 @@ class EventTest : public Subscriber
 public:
     EventTest();
     ~EventTest();
-    void notify(Event *e);
+    void notify(std::shared_ptr<Event> e);
     static int event_count;
 };
 

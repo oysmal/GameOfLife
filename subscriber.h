@@ -9,8 +9,8 @@ public:
     Subscriber();
     virtual ~Subscriber();
 
-    bool operator== (Subscriber &s) { return this == &s;};
-    virtual void notify(Event *e) = 0;
+    bool operator== (std::shared_ptr<Subscriber> s) { return this == s.get();};
+    virtual void notify(std::shared_ptr<Event> e) = 0;
     void subscribe(Event::EVENT e);
 };
 

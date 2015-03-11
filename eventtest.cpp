@@ -15,7 +15,7 @@ EventTest::~EventTest()
 
 }
 
-void EventTest::notify(Event *e) {
+void EventTest::notify(std::shared_ptr<Event> e) {
     qDebug() << "Event recieved\n";
     event_count++;
 }
