@@ -4,12 +4,13 @@
 #include "subscriber.h"
 #include <iostream>
 
+
 class EventTest : public Subscriber
 {
 public:
     EventTest();
     ~EventTest();
-    void notify(std::shared_ptr<Event> e);
+    void notify(std::shared_ptr<gol::Event> e);
     static int event_count;
 };
 

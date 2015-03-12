@@ -6,13 +6,14 @@
 #include "subscriber.h"
 #include "event.h"
 
+
 class EventHandler
 {
 public:
 
-    void subscribe(Event::EVENT e, std::shared_ptr<Subscriber> s);
-    void cancel_subscription(Event::EVENT e, std::shared_ptr<Subscriber> s);
-    void add_event_to_queue(std::shared_ptr<Event> e);
+    void subscribe(gol::Event::EVENT e, std::shared_ptr<Subscriber> s);
+    void cancel_subscription(gol::Event::EVENT e, std::shared_ptr<Subscriber> s);
+    void add_event_to_queue(std::shared_ptr<gol::Event> e);
     void notify_subscribers();
 
     ~EventHandler();
@@ -24,8 +25,8 @@ public:
     };
 
 private:
-    std::map<Event::EVENT, std::vector<std::shared_ptr<Subscriber>>> subscribers;
-    std::vector<std::shared_ptr<Event>> event_queue;
+    std::map<gol::Event::EVENT, std::vector<std::shared_ptr<Subscriber>>> subscribers;
+    std::vector<std::shared_ptr<gol::Event>> event_queue;
 
     EventHandler();
     EventHandler(EventHandler const&) = delete;

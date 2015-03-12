@@ -11,6 +11,6 @@ Subscriber::~Subscriber()
 
 }
 
-void Subscriber::subscribe(Event::EVENT e) {
+void Subscriber::subscribe(gol::Event::EVENT e) {
     EventHandler::getInstance().subscribe(e, std::shared_ptr<Subscriber>(this));
 }

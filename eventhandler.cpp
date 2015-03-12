@@ -1,5 +1,7 @@
 #include "eventhandler.h"
+#include <qdebug>
 
+using namespace gol;
 EventHandler::EventHandler()
 {
     this->subscribers = std::map<Event::EVENT, std::vector<std::shared_ptr<Subscriber>>>();
@@ -44,6 +46,8 @@ void EventHandler::notify_subscribers() {
 }
 
 EventHandler::~EventHandler() {
+
     subscribers.clear();
     event_queue.clear();
+
 }

@@ -10,8 +10,8 @@ public:
     virtual ~Subscriber();
 
     bool operator== (std::shared_ptr<Subscriber> s) { return this == s.get();};
-    virtual void notify(std::shared_ptr<Event> e) = 0;
-    void subscribe(Event::EVENT e);
+    virtual void notify(std::shared_ptr<gol::Event> e) = 0;
+    void subscribe(gol::Event::EVENT e);
 };
 
 #endif // SUBSCRIBER_H

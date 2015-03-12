@@ -27,9 +27,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    std::shared_ptr<QGraphicsScene> scene;
-    QList<std::shared_ptr<QGraphicsRectItem>> points;
-    QGraphicsView graphicsView;
+    QGraphicsScene* scene;
+    QList<QGraphicsRectItem*> points;
 
 private slots:
     void sendEventTest();

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     Grid::getInstance().set_value_at(99,99, true);
     Grid::getInstance().set_value_at(0,99, true);
+    Grid::getInstance().set_value_at(99,0, true);
     Grid::getInstance().set_value_at(0,0, true);
     Grid::getInstance().set_value_at(1,1, true);
     Grid::getInstance().set_value_at(2,2, true);
@@ -24,15 +25,11 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(8,8, true);
     Grid::getInstance().set_value_at(9,9, true);
     Grid::getInstance().set_value_at(10,10, true);
-    connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
-    std::shared_ptr<QAction> closeAction = std::shared_ptr<QAction>(new QAction(this));
-    std::shared_ptr<QShortcut> escapeShortcut = std::shared_ptr<QShortcut>(new QShortcut(this));
-    escapeShortcut->setKey(QKeySequence(Qt::Key_Escape));
-    closeAction->setShortcut(QKeySequence(Qt::Key_Escape));
-    connect(closeAction.get(), SIGNAL(activated()), this, SLOT(close()));
 
-    scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
-    ui->graphicsView->setScene(scene.get());
+    connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
+
+    scene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(scene);
 
     loadGridIntoView();
 }
@@ -43,28 +40,22 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::sendEventTest() {
-    add_event_to_queue(std::shared_ptr<Event>(new Event(Event::EVENT::AUTO_STEP)));
+    add_event_to_queue(std::shared_ptr<gol::Event>(new gol::Event(gol::Event::EVENT::AUTO_STEP)));
     EventHandler::getInstance().notify_subscribers();
     qDebug() << EventTest::event_count << "\n";
 }
 
 void MainWindow::loadGridIntoView() {
-    std::shared_ptr<QBrush> brush = std::shared_ptr<QBrush>(new QBrush());
-    brush->setColor( Qt::green );
 
     qDebug() << "Loading grid into view...\n";
     int width = Grid::getInstance().get_size_x(), height = Grid::getInstance().get_size_y();
     for(int i = 0; i < width; i++) {
         for(int j = 0; j < height; j++) {
             if(Grid::getInstance().get_value_at(i, j) == true) {
-                qDebug() << "Value at == true";
                 QPoint pos = scalePosition(i,j);
-                scene->foregroundBrush().setColor(Qt::green);
-                scene->foregroundBrush().setStyle(Qt::SolidPattern);
-                std::shared_ptr<QGraphicsRectItem> p = std::shared_ptr<QGraphicsRectItem>(new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5)));
-                p->setBrush(*brush.get());
+                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5));
                 points.append(p);
-                scene->addItem(p.get());
+                scene->addItem(p);
             }
         }
     }
