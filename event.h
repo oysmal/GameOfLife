@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 
-namespace gol {
 class Event
 {
 public:
@@ -22,6 +21,6 @@ private:
     std::vector<std::string> data;
     EVENT event_type;
 };
-}
+
 
 #endif // EVENT_H

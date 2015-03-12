@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     subscriber.cpp \
     eventinterface.cpp \
     event.cpp \
-    eventtest.cpp \
     grid.cpp \
     filemanager.cpp \
     loader.cpp \
@@ -34,7 +33,6 @@ HEADERS  += mainwindow.h \
     subscriber.h \
     event.h \
     eventinterface.h \
-    eventtest.h \
     grid.h \
     filemanager.h \
     loader.h \

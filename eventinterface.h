@@ -11,7 +11,7 @@ public:
     EventInterface();
     ~EventInterface();
 
-    void add_event_to_queue(std::shared_ptr<gol::Event> e);
+    void add_event_to_queue(std::shared_ptr<Event> e);
 
 };
 

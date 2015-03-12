@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "eventhandler.h"
-#include "eventtest.h"
 #include <QDebug>
 #include <QShortcut>
 
@@ -28,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
 
-    scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
+    scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
+    ui->graphicsView->setScene(scene.get());
 
     loadGridIntoView();
 }
@@ -40,9 +39,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::sendEventTest() {
-    add_event_to_queue(std::shared_ptr<gol::Event>(new gol::Event(gol::Event::EVENT::AUTO_STEP)));
+    add_event_to_queue(std::shared_ptr<Event>(new Event(Event::EVENT::AUTO_STEP)));
     EventHandler::getInstance().notify_subscribers();
-    qDebug() << EventTest::event_count << "\n";
 }
 
 void MainWindow::loadGridIntoView() {
@@ -53,9 +51,9 @@ void MainWindow::loadGridIntoView() {
         for(int j = 0; j < height; j++) {
             if(Grid::getInstance().get_value_at(i, j) == true) {
                 QPoint pos = scalePosition(i,j);
-                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5));
+                std::shared_ptr<QGraphicsRectItem> p = std::shared_ptr<QGraphicsRectItem>(new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5)));
                 points.append(p);
-                scene->addItem(p);
+                scene->addItem(p.get());
             }
         }
     }
