@@ -11,6 +11,7 @@ public:
     Gameoflife();
     ~Gameoflife();
 
+    int get_tick();
     void open_file(std::string filePath);
     void iterator();
     void iterator_step(int n);

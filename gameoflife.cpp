@@ -15,6 +15,7 @@ Gameoflife::~Gameoflife() {
 
 void Gameoflife::iterator() {
     tick++;
+    Gameoflife::apply_rules();
 }
 
 void Gameoflife::iterator_step(int n) {
@@ -26,6 +27,10 @@ void Gameoflife::iterator_step(int n) {
 
 void Gameoflife::open_file(std::string filePath) {
     FileManager.open_file(filePath);
+}
+
+int Gameoflife::get_tick() {
+    return tick;
 }
 
 // denne må opptimaliseres, slik at den ikke går igjennom hele for hver gang.
