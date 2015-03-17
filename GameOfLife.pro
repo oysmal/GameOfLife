@@ -6,6 +6,8 @@
 
 QT       += core gui
 QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -stdlib=libc++
+QMAKE_LFLAGS += -stdlib=libc++
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,7 +22,6 @@ SOURCES += main.cpp\
     subscriber.cpp \
     eventinterface.cpp \
     event.cpp \
-    eventtest.cpp \
     grid.cpp \
     filemanager.cpp \
     loader.cpp \
@@ -32,7 +33,6 @@ HEADERS  += mainwindow.h \
     subscriber.h \
     event.h \
     eventinterface.h \
-    eventtest.h \
     grid.h \
     filemanager.h \
     loader.h \
