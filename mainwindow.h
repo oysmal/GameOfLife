@@ -9,6 +9,7 @@
 #include <QGraphicsRectItem>
 #include <QList>
 #include <QPoint>
+#include "gameoflife.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,9 +30,11 @@ private:
     Ui::MainWindow *ui;
     std::shared_ptr<QGraphicsScene> scene;
     QList<std::shared_ptr<QGraphicsRectItem>> points;
+    Gameoflife game;
 
 private slots:
-    void sendEventTest();
+    void startGame();
+    void iterateGame();
 };
 
 #endif // MAINWINDOW_H
