@@ -15,6 +15,13 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(99,0, true);
     Grid::getInstance().set_value_at(0,0, true);
     Grid::getInstance().set_value_at(1,1, true);
+    Grid::getInstance().set_value_at(1,2, true);
+    Grid::getInstance().set_value_at(1,3, true);
+    Grid::getInstance().set_value_at(1,4, true);
+    Grid::getInstance().set_value_at(2,1, true);
+    Grid::getInstance().set_value_at(3,1, true);
+    Grid::getInstance().set_value_at(4,1, true);
+    Grid::getInstance().set_value_at(2,3, true);
     Grid::getInstance().set_value_at(2,2, true);
     Grid::getInstance().set_value_at(3,3, true);
     Grid::getInstance().set_value_at(4,4, true);
@@ -25,7 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(9,9, true);
     Grid::getInstance().set_value_at(10,10, true);
 
-    connect(ui->autoIterateButton, SIGNAL(clicked()), this, SLOT(sendEventTest()));
+    this->connect(ui->runButton, SIGNAL(clicked()), this, SLOT(startGame()));
+    this->connect(ui->manualIterateButton, SIGNAL(clicked()), this, SLOT(iterateGame()));
 
     scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
     ui->graphicsView->setScene(scene.get());
@@ -38,12 +46,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::sendEventTest() {
-    add_event_to_queue(std::shared_ptr<Event>(new Event(Event::EVENT::AUTO_STEP)));
-    EventHandler::getInstance().notify_subscribers();
-}
-
 void MainWindow::loadGridIntoView() {
+
+    scene->clear();
 
     qDebug() << "Loading grid into view...\n";
     int width = Grid::getInstance().get_size_x(), height = Grid::getInstance().get_size_y();
@@ -53,6 +58,7 @@ void MainWindow::loadGridIntoView() {
                 QPoint pos = scalePosition(i,j);
                 std::shared_ptr<QGraphicsRectItem> p = std::shared_ptr<QGraphicsRectItem>(new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5)));
                 points.append(p);
+                p->setBrush(QBrush(Qt::black));
                 scene->addItem(p.get());
             }
         }
@@ -60,6 +66,7 @@ void MainWindow::loadGridIntoView() {
 }
 
 
+// Scale the point position from grid coordinates to the graphicsview coordiantes.
 QPoint MainWindow::scalePosition(int i, int j) {
     QSize size = ui->graphicsView->size();
     int width = Grid::getInstance().get_size_x();
@@ -69,4 +76,17 @@ QPoint MainWindow::scalePosition(int i, int j) {
     int heightfactor = size.height()/(float)height;
 
     return QPoint(i*widthfactor, j*heightfactor);
+}
+
+
+
+void MainWindow::startGame() {
+    this->game;
+    this->game.iterator_step(1);
+    loadGridIntoView();
+}
+
+void MainWindow::iterateGame() {
+    this->game.iterator_step(1);
+    loadGridIntoView();
 }
