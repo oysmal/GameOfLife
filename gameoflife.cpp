@@ -26,7 +26,8 @@ void Gameoflife::iterator_step(int n) {
 }
 
 void Gameoflife::open_file(std::string filePath) {
-    FileManager.open_file(filePath);
+    FileManager filemanager;
+    filemanager.open_file(filePath);
 }
 
 int Gameoflife::get_tick() {
