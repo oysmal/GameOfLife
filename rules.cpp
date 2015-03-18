@@ -31,14 +31,14 @@ void Rules::set_breed(vector<int> values) {
 void Rules::change (int x, int y, int neighbour) {
 
     for (int i = 0; i < breed_values.size(); i++) {
-        if (!Grid::get_value_at(x, y) && breed_values[i] == neighbour){
+        if (!Grid::getInstance().get_value_at(x, y) && breed_values[i] == neighbour){
             Grid::getTempInstance().set_value_at(x, y, true);
             return;
         }
     }
 
     for (int i = 0; i < alive_values.size(); i++) {
-        if (Grid::get_value_at(x, y) && alive_values[i] == neighbour){
+        if (Grid::getInstance().get_value_at(x, y) && alive_values[i] == neighbour){
             Grid::getTempInstance().set_value_at(x, y, true);
         }
     }
