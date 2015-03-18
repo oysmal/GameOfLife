@@ -46,22 +46,28 @@ void Rules::change (int x, int y, int neighbour) {
 
 int Rules::test_neighbour(int x, int y){
     int temp = 0;
+    if(Grid::getInstance().get_value_at(x-1, y-1)) {
+        temp++;
+    }
+    if(Grid::getInstance().get_value_at(x, y-1)) {
+        temp++;
+    }
+    if(Grid::getInstance().get_value_at(x+1, y-1)) {
+        temp++;
+    }
+    if(Grid::getInstance().get_value_at(x-1, y)) {
+        temp++;
+    }
     if(Grid::getInstance().get_value_at(x+1, y)) {
+        temp++;
+    }
+    if(Grid::getInstance().get_value_at(x-1, y+1)) {
         temp++;
     }
     if(Grid::getInstance().get_value_at(x, y+1)) {
         temp++;
     }
     if(Grid::getInstance().get_value_at(x+1, y+1)) {
-        temp++;
-    }
-    if(Grid::getInstance().get_value_at(x, y-1)) {
-        temp++;
-    }
-    if(Grid::getInstance().get_value_at(x-1, y)) {
-        temp++;
-    }
-    if(Grid::getInstance().get_value_at(x-1, y-1)) {
         temp++;
     }
     return temp;
