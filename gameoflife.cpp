@@ -17,12 +17,6 @@ void Gameoflife::iterate() {
     Gameoflife::apply_rules();
 }
 
-void Gameoflife::iterate_auto(){
-    while(loop) {
-        Gameoflife::apply_rules();
-    }
-}
-
 void Gameoflife::open_file(std::string filePath) {
     FileManager filemanager;
     filemanager.open_file(filePath);

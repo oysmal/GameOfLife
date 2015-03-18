@@ -14,7 +14,6 @@ public:
     int get_step();
     void open_file(std::string filePath);
     void iterate();
-    void iterate_auto();
     void apply_rules();
     void test_neighbour(int x, int y);
     void new_rules(std::vector<int> breed, std::vector<int> alive);
