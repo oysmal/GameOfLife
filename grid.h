@@ -31,7 +31,7 @@ public:
         tempinstance.reset();
     }
 
-    void swap_temp_grid_to_front();
+    static void swap_temp_grid_to_front();
     bool get_value_at(int x, int y);
     void set_value_at(int x, int y, bool value);
     size_t get_size_x();
