@@ -18,10 +18,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    eventhandler.cpp \
-    subscriber.cpp \
-    eventinterface.cpp \
-    event.cpp \
     grid.cpp \
     filemanager.cpp \
     loader.cpp \
@@ -29,10 +25,6 @@ SOURCES += main.cpp\
     rules.cpp
 
 HEADERS  += mainwindow.h \
-    eventhandler.h \
-    subscriber.h \
-    event.h \
-    eventinterface.h \
     grid.h \
     filemanager.h \
     loader.h \

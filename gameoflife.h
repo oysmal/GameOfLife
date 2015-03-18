@@ -4,21 +4,17 @@
 #include "grid.h"
 #include "rules.h"
 #include "filemanager.h"
-#include "subscriber.h"
-#include "eventinterface.h"
 
-class Gameoflife: public Subscriber, public EventInterface
+class Gameoflife
 {
 public:
     Gameoflife();
     ~Gameoflife();
 
-    void notify(std::shared_ptr<Event> e);
     int get_step();
     void open_file(std::string filePath);
-    void iterator();
-    void iterator_auto();
-    void iterator_step(int n);
+    void iterate();
+    void iterate_auto();
     void apply_rules();
     void test_neighbour(int x, int y);
     void new_rules(std::vector<int> breed, std::vector<int> alive);

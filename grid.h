@@ -1,10 +1,9 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include "eventinterface.h"
 #include <qDebug>
 
-class Grid : public EventInterface
+class Grid
 {
 public:
     ~Grid();

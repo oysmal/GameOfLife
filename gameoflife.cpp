@@ -1,51 +1,25 @@
-#include "gameoflife.h"
 #include "rules.h"
 #include "grid.h"
-#include "eventinterface.h"
-#include "subscriber.h"
+#include "gameoflife.h"
 using namespace std;
 
 Gameoflife::Gameoflife() {
     step = 0;
     loop = false;
-    subscribe(Event::AUTO_STEP);
-    subscribe(Event::NEXT_STEP);
-    subscribe(Event::STOP_GAME);
 }
 
 Gameoflife::~Gameoflife() {
 
 }
 
-void Gameoflife::notify(shared_ptr<Event> e){
-    Event::EVENT event = e->get_event_type();
-
-    switch(event) {
-    case Event::NEXT_STEP:
-        Gameoflife::iterator();
-        break;
-    case Event::AUTO_STEP:
-        loop = true;
-        Gameoflife::iterator_auto();
-        break;
-    case Event::STOP_GAME:
-        loop = false;
-        break;
-    }
-}
-
 void Gameoflife::iterate() {
     step++;
     Gameoflife::apply_rules();
-    shared_ptr<Event> e = shared_ptr<Event>(new Event(Event::ITERATION_FINISHED));
-    add_event_to_queue(e);
 }
 
 void Gameoflife::iterate_auto(){
     while(loop) {
         Gameoflife::apply_rules();
-        shared_ptr<Event> e = shared_ptr<Event>(new Event(Event::ITERATION_FINISHED));
-        add_event_to_queue(e);
     }
 }
 

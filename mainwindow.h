@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "eventinterface.h"
 #include "grid.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -15,7 +14,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow, public EventInterface, public Subscriber
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -25,12 +24,11 @@ public:
     void loadGridIntoView();
     void render();
     QPoint scalePosition(int i, int j);
-    void notify(std::shared_ptr<Event> e);
 
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<QGraphicsScene> scene;
-    Gameoflife game;
+    //Gameoflife game;
 
 private slots:
     void startGame();
