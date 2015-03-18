@@ -13,25 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(99,99, true);
     Grid::getInstance().set_value_at(0,99, true);
     Grid::getInstance().set_value_at(99,0, true);
-    Grid::getInstance().set_value_at(0,0, true);
-    Grid::getInstance().set_value_at(1,1, true);
-    Grid::getInstance().set_value_at(1,2, true);
-    Grid::getInstance().set_value_at(1,3, true);
-    Grid::getInstance().set_value_at(1,4, true);
+    Grid::getInstance().set_value_at(1,0, true);
     Grid::getInstance().set_value_at(2,1, true);
-    Grid::getInstance().set_value_at(3,1, true);
-    Grid::getInstance().set_value_at(4,1, true);
-    Grid::getInstance().set_value_at(2,3, true);
     Grid::getInstance().set_value_at(2,2, true);
-    Grid::getInstance().set_value_at(3,3, true);
-    Grid::getInstance().set_value_at(4,4, true);
-    Grid::getInstance().set_value_at(5,5, true);
-    Grid::getInstance().set_value_at(6,6, true);
-    Grid::getInstance().set_value_at(7,7, true);
-    Grid::getInstance().set_value_at(8,8, true);
-    Grid::getInstance().set_value_at(9,9, true);
-    Grid::getInstance().set_value_at(10,10, true);
-
+    Grid::getInstance().set_value_at(1,2, true);
+    Grid::getInstance().set_value_at(0,2, true);
     this->connect(ui->runButton, SIGNAL(clicked()), this, SLOT(startGame()));
     this->connect(ui->manualIterateButton, SIGNAL(clicked()), this, SLOT(iterateGame()));
 
@@ -44,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    scene.reset();
 }
 
 void MainWindow::loadGridIntoView() {
@@ -56,10 +43,10 @@ void MainWindow::loadGridIntoView() {
         for(int j = 0; j < height; j++) {
             if(Grid::getInstance().get_value_at(i, j) == true) {
                 QPoint pos = scalePosition(i,j);
-                std::shared_ptr<QGraphicsRectItem> p = std::shared_ptr<QGraphicsRectItem>(new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5)));
-                points.append(p);
-                p->setBrush(QBrush(Qt::black));
-                scene->addItem(p.get());
+                QGraphicsRectItem *p = new QGraphicsRectItem(QRectF(pos.x(), pos.y(), 5, 5));
+                QBrush *q = new QBrush(Qt::black);
+                p->setBrush(*q);
+                scene->addItem(p);
             }
         }
     }
