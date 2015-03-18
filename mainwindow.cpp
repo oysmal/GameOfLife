@@ -73,10 +73,17 @@ QPoint MainWindow::scalePosition(int i, int j) {
 
 
 void MainWindow::startGame() {
+    continueLoop = true;
 }
 
 void MainWindow::iterateGame() {
+    game.iterate();
 }
 
 void MainWindow::stopGame() {
+    continueLoop = false;
+}
+
+void MainWindow::loop() {
+
 }
