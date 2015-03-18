@@ -45,8 +45,7 @@ void EventHandler::notify_subscribers() {
 }
 
 EventHandler::~EventHandler() {
-
-    //subscribers.clear();
-    //event_queue.clear();
+    subscribers.clear();
+    event_queue.clear();
 
 }

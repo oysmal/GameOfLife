@@ -30,7 +30,7 @@
       <x>0</x>
       <y>20</y>
       <width>130</width>
-      <height>161</height>
+      <height>189</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -51,23 +51,23 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="autoIterateButton">
-       <property name="text">
-        <string>Auto Iterate</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="manualIterateButton">
-       <property name="text">
-        <string>Manual Iterate</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="runButton">
        <property name="text">
         <string>Run</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stopButton">
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextStepButton">
+       <property name="text">
+        <string>Next step</string>
        </property>
       </widget>
      </item>
@@ -121,22 +121,5 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>manualIterateButton</sender>
-   <signal>clicked()</signal>
-   <receiver>autoIterateButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>129</x>
-     <y>181</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>129</x>
-     <y>147</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -15,7 +15,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow, public EventInterface
+class MainWindow : public QMainWindow, public EventInterface, public Subscriber
 {
     Q_OBJECT
 
@@ -25,6 +25,7 @@ public:
     void loadGridIntoView();
     void render();
     QPoint scalePosition(int i, int j);
+    void notify(std::shared_ptr<Event> e);
 
 private:
     Ui::MainWindow *ui;
@@ -34,6 +35,7 @@ private:
 private slots:
     void startGame();
     void iterateGame();
+    void stopGame();
 };
 
 #endif // MAINWINDOW_H

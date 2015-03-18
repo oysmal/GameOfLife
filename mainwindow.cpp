@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    subscribe(Event::ITERATION_FINISHED);
+    this->game;
+
     ui->setupUi(this);
     Grid::getInstance().set_value_at(99,99, true);
     Grid::getInstance().set_value_at(0,99, true);
@@ -19,7 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     Grid::getInstance().set_value_at(1,2, true);
     Grid::getInstance().set_value_at(0,2, true);
     this->connect(ui->runButton, SIGNAL(clicked()), this, SLOT(startGame()));
-    this->connect(ui->manualIterateButton, SIGNAL(clicked()), this, SLOT(iterateGame()));
+    this->connect(ui->nextStepButton, SIGNAL(clicked()), this, SLOT(iterateGame()));
+    this->connect(ui->stopButton, SIGNAL(clicked()), this, SLOT(stopGame()));
 
     scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
     ui->graphicsView->setScene(scene.get());
@@ -31,6 +35,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
     scene.reset();
+    // Delete grid pointers.
+    Grid::delete_grid();
 }
 
 void MainWindow::loadGridIntoView() {
@@ -66,14 +72,23 @@ QPoint MainWindow::scalePosition(int i, int j) {
 }
 
 
-
-void MainWindow::startGame() {
-    this->game;
-    this->game.iterator_step(1);
+void MainWindow::notify(std::shared_ptr<Event> e) {
     loadGridIntoView();
 }
 
+
+
+void MainWindow::startGame() {
+    std::shared_ptr<Event> e = std::shared_ptr<Event>(new Event(Event::AUTO_STEP));
+    add_event_to_queue(e);
+}
+
 void MainWindow::iterateGame() {
-    this->game.iterator_step(1);
-    loadGridIntoView();
+    std::shared_ptr<Event> e = std::shared_ptr<Event>(new Event(Event::NEXT_STEP));
+    add_event_to_queue(e);
+}
+
+void MainWindow::stopGame() {
+    std::shared_ptr<Event> e = std::shared_ptr<Event>(new Event(Event::STOP_GAME));
+    add_event_to_queue(e);
 }

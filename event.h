@@ -20,7 +20,7 @@ class Event
 public:
 
     // Types of event to create.
-    enum EVENT { ITERATION_FINISHED, AUTO_STEP, MANUAL_STEP, NEXT_STEP, VALUE_CHANGED, LOADED_FILE };
+    enum EVENT { STOP_GAME, AUTO_STEP, NEXT_STEP, VALUE_CHANGED, LOADED_FILE, ITERATION_FINISHED };
 
     // Create event without data.
     Event(EVENT event_type);

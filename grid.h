@@ -26,6 +26,11 @@ public:
         return *tempinstance.get();
     }
 
+    static void delete_grid() {
+        instance.reset();
+        tempinstance.reset();
+    }
+
     void swap_temp_grid_to_front();
     bool get_value_at(int x, int y);
     void set_value_at(int x, int y, bool value);

@@ -65,7 +65,7 @@ void Grid::expand_grid_array(int expand_points_x, int expand_points_y) {
 }
 
 void Grid::clear_and_set_size(int size_x, int size_y) {
-    delete this->grid_array;
+    delete [] this->grid_array;
 
     grid_array = new bool*[size_x];
     for( int i = 0; i < size_x; i++) {
