@@ -78,6 +78,7 @@ void MainWindow::startGame() {
 
 void MainWindow::iterateGame() {
     game.iterate();
+    loadGridIntoView();
 }
 
 void MainWindow::stopGame() {
