@@ -24,11 +24,13 @@ public:
     void loadGridIntoView();
     void render();
     QPoint scalePosition(int i, int j);
+    void loop();
 
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<QGraphicsScene> scene;
-    //Gameoflife game;
+    Gameoflife game;
+    bool continueLoop;
 
 private slots:
     void startGame();
