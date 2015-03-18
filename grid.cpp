@@ -1,6 +1,12 @@
 #include "grid.h"
 #include <QDebug>
 
+bool Grid::isInstanceInit = false;
+bool Grid::isTempInit = false;
+
+std::shared_ptr<Grid> Grid::instance = nullptr;
+std::shared_ptr<Grid> Grid::tempinstance = nullptr;
+
 Grid::Grid()
 {
     grid_array = new bool*[size_x];
@@ -68,4 +74,14 @@ void Grid::clear_and_set_size(int size_x, int size_y) {
 
     this->size_x = size_x;
     this->size_y = size_y;
+}
+
+// Swap temp grid to main grid
+void Grid::swap_temp_grid_to_front() {
+    if(isInstanceInit && isTempInit) {
+        std::shared_ptr<Grid> holder = tempinstance;
+        tempinstance = instance;
+        instance = tempinstance;
+        tempinstance->clear_and_set_size(100, 100);
+    }
 }
