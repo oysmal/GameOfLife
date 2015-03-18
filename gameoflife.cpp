@@ -7,6 +7,7 @@ using namespace std;
 
 Gameoflife::Gameoflife() {
     step = 0;
+    loop = false;
     subscribe(Event::AUTO_STEP);
     subscribe(Event::NEXT_STEP);
     subscribe(Event::STOP_GAME);
@@ -21,30 +22,30 @@ void Gameoflife::notify(shared_ptr<Event> e){
 
     switch(event) {
     case Event::NEXT_STEP:
-        iterator();
+        Gameoflife::iterator();
         break;
     case Event::AUTO_STEP:
-        iterator_auto(true);
+        loop = true;
+        Gameoflife::iterator_auto();
         break;
     case Event::STOP_GAME:
-        iterator_auto(false);
+        loop = false;
         break;
     }
 }
 
-void Gameoflife::iterator() {
+void Gameoflife::iterate() {
     step++;
     Gameoflife::apply_rules();
     shared_ptr<Event> e = shared_ptr<Event>(new Event(Event::ITERATION_FINISHED));
     add_event_to_queue(e);
 }
 
-void Gameoflife::iterator_auto(boolean loop){
+void Gameoflife::iterate_auto(){
     while(loop) {
         Gameoflife::apply_rules();
         shared_ptr<Event> e = shared_ptr<Event>(new Event(Event::ITERATION_FINISHED));
         add_event_to_queue(e);
-    }
     }
 }
 

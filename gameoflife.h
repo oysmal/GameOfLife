@@ -14,9 +14,10 @@ public:
     ~Gameoflife();
 
     void notify(std::shared_ptr<Event> e);
-    int get_tick();
+    int get_step();
     void open_file(std::string filePath);
     void iterator();
+    void iterator_auto();
     void iterator_step(int n);
     void apply_rules();
     void test_neighbour(int x, int y);
@@ -24,6 +25,7 @@ public:
 
 private:
     int step;
+    bool loop;
     Rules rules;
     FileManager filemanager;
 };
