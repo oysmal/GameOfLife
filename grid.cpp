@@ -72,6 +72,12 @@ void Grid::clear_and_set_size(int size_x, int size_y) {
         grid_array[i] = new bool[size_y];
     }
 
+    for(int i = 0; i < size_x; i ++) {
+        for(int j = 0; j < size_y; j ++) {
+            grid_array[i][j] = false;
+        }
+    }
+
     this->size_x = size_x;
     this->size_y = size_y;
 }
@@ -79,9 +85,7 @@ void Grid::clear_and_set_size(int size_x, int size_y) {
 // Swap temp grid to main grid
 void Grid::swap_temp_grid_to_front() {
     if(isInstanceInit && isTempInit) {
-        std::shared_ptr<Grid> holder = tempinstance;
-        tempinstance = instance;
-        instance = tempinstance;
-        tempinstance->clear_and_set_size(100, 100);
+        instance.swap(tempinstance);
+        tempinstance->clear_and_set_size(instance->get_size_x(),instance->get_size_y());
     }
 }
