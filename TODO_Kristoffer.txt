@@ -53,3 +53,9 @@ check_if_changes (array of coordinates) {
 
 Denne vil jo sjekkes, men trenger ikke å sjekkes for hver gang, for denne kommer ikke til å endre seg. Derfor for hver tick tracke endringer
 og kun endringer, ubetydelig om cellene lever eller ikke.
+
+
+Så breed sjekker koordinatene, finner ut om noe skal endres hvis noe skal endres, endre i tempgridden til riktig.
+Hvis ikke gå videre til neste koordinater
+Da vil temp være riktig, så overskriver temp den nåværende (men holder seg korrekt videre)...
+Samme da me kill

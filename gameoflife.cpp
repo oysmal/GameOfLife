@@ -13,6 +13,23 @@ Gameoflife::~Gameoflife() {
 
 }
 
+/*
+ * @override
+ * void notify() {
+ *      iterator();
+ * }
+ *
+ * void notify(int step) {
+ *      iterator_step(step);
+ * }
+ *
+ * void notify(boolean loop) {
+ *      when (loop) {
+ *          iterator();
+ *      }
+ * }
+ */
+
 void Gameoflife::iterator() {
     tick++;
     Gameoflife::apply_rules();
@@ -41,7 +58,7 @@ void Gameoflife::apply_rules() {
         for(int j = 0; j < Grid::getInstance().get_size_y(); j++){
             int temp = rules.test_neighbour(i, j);
             rules.breed(i, j, temp);
-            rules.kill(i, j, temp);
+            //rules.kill(i, j, temp);
         }
     }
 }
