@@ -6,39 +6,37 @@
 using namespace std;
 
 Gameoflife::Gameoflife() {
-
+    step = 0;
 }
 
 Gameoflife::~Gameoflife() {
 
 }
 
-/*
- * @override
- * void notify() {
- *      iterator();
- * }
- *
- * void notify(int step) {
- *      iterator_step(step);
- * }
- *
- * void notify(boolean loop) {
- *      when (loop) {
- *          iterator();
- *      }
- * }
- */
+void Gameoflife::notify(shared_ptr<Event> e){
+    Event::EVENT event = e->get_event_type();
+
+    switch(event) {
+    case Event::NEXT_STEP:
+        iterator();
+        break;
+    case Event::AUTO_STEP:
+        iterator_auto(true);
+        break;
+    case Event::STOP_GAME:
+        iterator_auto(false);
+        break;
+    }
+}
 
 void Gameoflife::iterator() {
-    tick++;
+    step++;
     Gameoflife::apply_rules();
 }
 
-void Gameoflife::iterator_step(int n) {
-    for(int i = 0; i < n; i++) {
+void Gameoflife::iterator_auto(boolean loop){
+    while(loop) {
         Gameoflife::apply_rules();
-        tick++;
     }
 }
 
@@ -47,8 +45,8 @@ void Gameoflife::open_file(std::string filePath) {
     filemanager.open_file(filePath);
 }
 
-int Gameoflife::get_tick() {
-    return tick;
+int Gameoflife::get_step() {
+    return step;
 }
 
 // denne må opptimaliseres, slik at den ikke går igjennom hele for hver gang.
@@ -57,10 +55,10 @@ void Gameoflife::apply_rules() {
     for(int i = 0; i < Grid::getInstance().get_size_x(); i++){
         for(int j = 0; j < Grid::getInstance().get_size_y(); j++){
             int temp = rules.test_neighbour(i, j);
-            rules.breed(i, j, temp);
-            //rules.kill(i, j, temp);
+            rules.change(i, j, temp);
         }
     }
+    Grid::swap_temp_grid_to_front();
 }
 
 void Gameoflife::new_rules(vector<int> breed, vector<int> alive) {

@@ -28,24 +28,19 @@ void Rules::set_breed(vector<int> values) {
     breed_values = values;
 }
 
+void Rules::change (int x, int y, int neighbour) {
 
-void Rules::breed (int x, int y, int neighbour) {
     for (int i = 0; i < breed_values.size(); i++) {
         if (breed_values[i] == neighbour){
-            Grid::getInstance().set_value_at(x, y, true);
+            Grid::getTempInstance().set_value_at(x, y, true);
+            return;
         }
     }
-}
 
-void Rules::kill (int x, int y, int neighbour) {
-    int temp = 0;
     for (int i = 0; i < alive_values.size(); i++) {
-        if (alive_values[i] != neighbour){
-            temp++;
+        if (alive_values[i] == neighbour){
+            Grid::getTempInstance().set_value_at(x, y, true);
         }
-    }
-    if(temp == alive_values.size()){
-        Grid::getInstance().set_value_at(x, y, false);
     }
 }
 
