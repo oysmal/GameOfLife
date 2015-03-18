@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include <qDebug>
+#include <memory>
 
 class Grid
 {
