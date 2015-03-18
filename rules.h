@@ -8,8 +8,7 @@ public:
     Rules();
     ~Rules();
 
-    void breed(int x, int y, int neighbours);
-    void kill(int x, int y, int neighbours);
+    void change(int x, int y, int neighbours);
     int test_neighbour(int x, int y);
 
     std::vector<int> get_alive();

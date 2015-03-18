@@ -4,13 +4,16 @@
 #include "grid.h"
 #include "rules.h"
 #include "filemanager.h"
+#include "subscriber.h"
+#include "eventinterface.h"
 
-class Gameoflife
+class Gameoflife: public Subscriber, public EventInterface
 {
 public:
     Gameoflife();
     ~Gameoflife();
 
+    void notify(std::shared_ptr<Event> e);
     int get_tick();
     void open_file(std::string filePath);
     void iterator();
@@ -20,7 +23,7 @@ public:
     void new_rules(std::vector<int> breed, std::vector<int> alive);
 
 private:
-    int tick;
+    int step;
     Rules rules;
     FileManager filemanager;
 };
