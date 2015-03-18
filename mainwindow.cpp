@@ -24,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->connect(ui->nextStepButton, SIGNAL(clicked()), this, SLOT(iterateGame()));
     this->connect(ui->stopButton, SIGNAL(clicked()), this, SLOT(stopGame()));
 
+    this->timer = new QTimer();
+    this->connect(timer, SIGNAL(timeout()), this, SLOT(loop()));
+
     qDebug() <<"before scene";
     scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
     ui->graphicsView->setScene(scene.get());
@@ -37,6 +40,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
     scene.reset();
+    delete timer;
 }
 
 void MainWindow::loadGridIntoView() {
@@ -74,6 +78,8 @@ QPoint MainWindow::scalePosition(int i, int j) {
 
 void MainWindow::startGame() {
     continueLoop = true;
+    timer->setInterval(5);
+    timer->start();
 }
 
 void MainWindow::iterateGame() {
@@ -83,8 +89,10 @@ void MainWindow::iterateGame() {
 
 void MainWindow::stopGame() {
     continueLoop = false;
+    timer->stop();
 }
 
 void MainWindow::loop() {
-
+    game.iterate();
+    loadGridIntoView();
 }

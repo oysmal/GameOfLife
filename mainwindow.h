@@ -9,6 +9,7 @@
 #include <QList>
 #include <QPoint>
 #include "gameoflife.h"
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -24,18 +25,19 @@ public:
     void loadGridIntoView();
     void render();
     QPoint scalePosition(int i, int j);
-    void loop();
 
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<QGraphicsScene> scene;
     Gameoflife game;
     bool continueLoop;
+    QTimer *timer;
 
 private slots:
     void startGame();
     void iterateGame();
     void stopGame();
+    void loop();
 };
 
 #endif // MAINWINDOW_H
