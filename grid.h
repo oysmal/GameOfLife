@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include "eventinterface.h"
+#include <qDebug>
 
 class Grid : public EventInterface
 {
@@ -10,11 +11,22 @@ public:
 
     // Get instance. instance is instantiated on first call, and when done without pointers, this is guaranteed to be correctly destroyed.
     static Grid& getInstance() {
-            static Grid instance;
-            return instance;
+        if(!isInstanceInit) {
+            instance = std::shared_ptr<Grid>(new Grid());
+            isInstanceInit = true;
+        }
+        return *instance.get();
     };
 
+    static Grid& getTempInstance() {
+        if(!isTempInit) {
+            tempinstance = std::shared_ptr<Grid>(new Grid());
+            isTempInit = true;
+        }
+        return *tempinstance.get();
+    }
 
+    void swap_temp_grid_to_front();
     bool get_value_at(int x, int y);
     void set_value_at(int x, int y, bool value);
     size_t get_size_x();
@@ -24,6 +36,10 @@ public:
 
 private:
 
+    static std::shared_ptr<Grid> instance;
+    static std::shared_ptr<Grid> tempinstance;
+    static bool isInstanceInit;
+    static bool isTempInit;
     Grid();
     Grid(Grid const&) = delete;
     void operator=(Grid const&) = delete;
