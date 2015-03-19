@@ -23,18 +23,25 @@ Grid::Grid()
 
 Grid::~Grid()
 {
-    delete grid_array;
+    delete_grid();
+}
+
+void Grid::delete_grid() {
+    for(int i = 0; i < size_x; i ++) {
+        delete [] grid_array[i];
+    }
+    delete [] grid_array;
 }
 
 bool Grid::get_value_at(int x, int y) {
-    if(x < size_x && y < size_y)
+    if(x >= 0 && y >= 0 && x < size_x && y < size_y)
         return grid_array[x][y];
     else
         return false;
 }
 
 void Grid::set_value_at(int x, int y, bool value) {
-    if(x < size_x && y < size_y)
+    if(x >= 0 && y >= 0 && x < size_x && y < size_y)
         grid_array[x][y] = value;
 }
 
@@ -58,7 +65,7 @@ void Grid::expand_grid_array(int expand_points_x, int expand_points_y) {
         }
     }
 
-    delete grid_array;
+    delete_grid();
     grid_array = array;
     size_x += expand_points_x;
     size_y += expand_points_y;

@@ -30,7 +30,6 @@ private:
     Ui::MainWindow *ui;
     std::shared_ptr<QGraphicsScene> scene;
     Gameoflife game;
-    bool continueLoop;
     QTimer *timer;
 
 private slots:

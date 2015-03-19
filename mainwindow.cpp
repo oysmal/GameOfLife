@@ -77,8 +77,7 @@ QPoint MainWindow::scalePosition(int i, int j) {
 
 
 void MainWindow::startGame() {
-    continueLoop = true;
-    timer->setInterval(5);
+    timer->setInterval(20);
     timer->start();
 }
 
@@ -88,7 +87,6 @@ void MainWindow::iterateGame() {
 }
 
 void MainWindow::stopGame() {
-    continueLoop = false;
     timer->stop();
 }
 
