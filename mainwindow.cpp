@@ -40,14 +40,13 @@ MainWindow::~MainWindow()
 {
     delete ui;
     scene.reset();
-    delete timer;
+    delete timer;   // Deleting timer created with new in constructor.
 }
 
 void MainWindow::loadGridIntoView() {
 
     scene->clear();
 
-    qDebug() << "Loading grid into view...\n";
     int width = Grid::getInstance().get_size_x(), height = Grid::getInstance().get_size_y();
     for(int i = 0; i < width; i++) {
         for(int j = 0; j < height; j++) {

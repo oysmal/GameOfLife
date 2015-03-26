@@ -26,6 +26,7 @@ Grid::~Grid()
     delete_grid();
 }
 
+// Delete grid_array.
 void Grid::delete_grid() {
     for(int i = 0; i < size_x; i ++) {
         delete [] grid_array[i];
