@@ -1,37 +1,44 @@
-#include "gameoflife.h"
 #include "rules.h"
 #include "grid.h"
-#include "eventinterface.h"
-#include "subscriber.h"
+#include "gameoflife.h"
+using namespace std;
 
-gameoflife::gameoflife() {
+Gameoflife::Gameoflife() {
+    step = 0;
+    loop = false;
+}
+
+Gameoflife::~Gameoflife() {
 
 }
 
-gameoflife::~gameoflife() {
-
+void Gameoflife::iterate() {
+    step++;
+    Gameoflife::apply_rules();
 }
 
-gameoflife::iterator() {
-    tick++;
+void Gameoflife::open_file(std::string filePath) {
+    FileManager filemanager;
+    filemanager.open_file(filePath);
 }
 
-gameoflife::load_file() {
-
+int Gameoflife::get_step() {
+    return step;
 }
 
 // denne må opptimaliseres, slik at den ikke går igjennom hele for hver gang.
-gameoflife::apply_rules(int x, int y) {
-    for(int i = 0; i < x; i++){ // 1 skal være x størrelsen i gridden
-        for(int j = 0; j < y; j++){ // 1 skal være y i gridden
+// int x og int y er størrelsen på gridden.
+void Gameoflife::apply_rules() {
+    for(int i = 0; i < Grid::getInstance().get_size_x(); i++){
+        for(int j = 0; j < Grid::getInstance().get_size_y(); j++){
             int temp = rules.test_neighbour(i, j);
-            rules.breed(i, j, temp);
-            rules.kill(i, j, temp);
+            rules.change(i, j, temp);
         }
     }
+    Grid::swap_temp_grid_to_front();
 }
 
-gameoflife::new_rules(int breed[], int alive[]) {
-    rules.set_alive(alive[]);
-    rules.set_breed(breed[]);
+void Gameoflife::new_rules(vector<int> breed, vector<int> alive) {
+    rules.set_alive(alive);
+    rules.set_breed(breed);
 }

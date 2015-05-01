@@ -3,7 +3,7 @@
 FileManager::FileManager()
 {
     this->array2d = nullptr;
-    this->loader = Loader::Loader();
+    this->loader = Loader();
 }
 
 FileManager::~FileManager()
