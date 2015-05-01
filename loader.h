@@ -15,14 +15,11 @@ public:
 
     enum Format { PLAIN_TEXT, LIFE_105, LIFE_106, RLE, UNSUPPORTED_FORMAT, FILE_NOT_OPEN};
 
-    static void loadFile(bool** array, std::fstream &file);
-    static void loadPlainTextFormat(bool** array, std::fstream &file);
-    static void loadLife105Format(bool** array, std::fstream &file);
-    static void loadLife106Format(bool** array, std::fstream &file);
-    static void loadRLEFormat(bool** array, std::fstream &file);
-
-    int checkIfLife105or106(std::fstream &file);
-    Loader::Format resolveFileFormat(std::fstream &file);
+    static void loadFile(std::string filepath);
+    static void loadPlainTextFormat(std::string filepath);
+    static void loadLife105Format(std::string filepath);
+    static void loadLife106Format(std::string filepath);
+    static void loadRLEFormat(std::string filepath);
 };
 
 #endif // LOADER_H
