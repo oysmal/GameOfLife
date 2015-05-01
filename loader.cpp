@@ -1,6 +1,7 @@
 #include "loader.h"
 
 
+
 Loader::Loader()
 {
 
@@ -61,19 +62,21 @@ Loader::~Loader()
 
 void Loader::loadLife106Format(std::string filepath) {
 
+    qDebug() << "Hello from loader!";
 
-    std::fstream file(filepath.c_str());
+    std::ifstream file;
+    file.open(filepath.c_str());
     std::string line;
-    std::regex reg("[0-9\-]");
     if(file.is_open()) {
-        while (getline(file, line)) {
+        qDebug() << "File is open";
+        while (std::getline(file, line)) {
             if(line.substr(0,5) == "#Life") {
                 continue;
             }
             std::string temp[2];
             int tempi = 0;
             for (int i = 0; i < line.length(); ++i) {
-                if(line.at(i) == ',') {
+                if(line.at(i) == ' ') {
                     tempi++;
                 } else {
                     temp[tempi] += line.at(i);
@@ -86,14 +89,19 @@ void Loader::loadLife106Format(std::string filepath) {
 
             // find center of array
 
-            int x, y;
-            x << std::stoi(temp[0]);
+            int x = 0, y = 0;
+            x = std::stoi(temp[0]);
             x = x + Grid::getInstance().get_size_x() / 2;
-            y << std::stoi(temp[1]);
+            y = std::stoi(temp[1]);
             y = y + Grid::getInstance().get_size_y() / 2;
+
+            qDebug() << "x: " << std::to_string(x).c_str();
+            qDebug() << "y: " << std::to_string(y).c_str();
 
             Grid::getInstance().set_value_at(x,y, true);
         }
+    } else {
+        qDebug() << "Could not open file";
     }
 
 

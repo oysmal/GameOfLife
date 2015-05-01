@@ -8,6 +8,7 @@
 #include <QDebug>
 #include "grid.h"
 #include <regex>
+#include <QDir>
 
 class Loader
 {

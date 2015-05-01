@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Grid::getInstance().set_value_at(2,2, true);
 //    Grid::getInstance().set_value_at(1,2, true);
 //    Grid::getInstance().set_value_at(0,2, true);
-    Loader::loadLife106Format("C:\Users\Ole Eilifsen\Documents\DAT105\GoL\lif\gosperglidergun_106.lif");
 
 
     qDebug() <<"before slots";
@@ -33,6 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() <<"before scene";
     scene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));
     ui->graphicsView->setScene(scene.get());
+
+
+    Loader::loadLife106Format("/Users/oysmal/Documents/Skole/DAT105/Practical1/GameOfLife/lif/test.txt");
 
     qDebug() <<"before load into view";
     loadGridIntoView();
