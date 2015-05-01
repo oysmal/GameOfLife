@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QShortcut>
 #include <QGraphicsRectItem>
+#include "loader.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,14 +11,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     qDebug() << "Setting up ui";
     ui->setupUi(this);
-    Grid::getInstance().set_value_at(99,99, true);
-    Grid::getInstance().set_value_at(0,99, true);
-    Grid::getInstance().set_value_at(99,0, true);
-    Grid::getInstance().set_value_at(1,0, true);
-    Grid::getInstance().set_value_at(2,1, true);
-    Grid::getInstance().set_value_at(2,2, true);
-    Grid::getInstance().set_value_at(1,2, true);
-    Grid::getInstance().set_value_at(0,2, true);
+//    Grid::getInstance().set_value_at(99,99, true);
+//    Grid::getInstance().set_value_at(0,99, true);
+//    Grid::getInstance().set_value_at(99,0, true);
+//    Grid::getInstance().set_value_at(1,0, true);
+//    Grid::getInstance().set_value_at(2,1, true);
+//    Grid::getInstance().set_value_at(2,2, true);
+//    Grid::getInstance().set_value_at(1,2, true);
+//    Grid::getInstance().set_value_at(0,2, true);
+    Loader::loadLife106Format("C:\Users\Ole Eilifsen\Documents\DAT105\GoL\lif\gosperglidergun_106.lif");
+
 
     qDebug() <<"before slots";
     this->connect(ui->runButton, SIGNAL(clicked()), this, SLOT(startGame()));
@@ -48,6 +51,7 @@ void MainWindow::loadGridIntoView() {
     scene->clear();
 
     int width = Grid::getInstance().get_size_x(), height = Grid::getInstance().get_size_y();
+    qDebug() << "width=" << width << "height=" << height;
     for(int i = 0; i < width; i++) {
         for(int j = 0; j < height; j++) {
             if(Grid::getInstance().get_value_at(i, j) == true) {

@@ -17,10 +17,7 @@ void Gameoflife::iterate() {
     Gameoflife::apply_rules();
 }
 
-void Gameoflife::open_file(std::string filePath) {
-    FileManager filemanager;
-    filemanager.open_file(filePath);
-}
+
 
 int Gameoflife::get_step() {
     return step;

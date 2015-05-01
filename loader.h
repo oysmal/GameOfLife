@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <QDebug>
+#include "grid.h"
+#include <regex>
 
 class Loader
 {

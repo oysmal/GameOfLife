@@ -3,7 +3,6 @@
 
 #include "grid.h"
 #include "rules.h"
-#include "filemanager.h"
 
 class Gameoflife
 {
@@ -22,7 +21,6 @@ private:
     int step;
     bool loop;
     Rules rules;
-    FileManager filemanager;
 };
 
 #endif // GAMEOFLIFE_H
